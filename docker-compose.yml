@@ -1,0 +1,16 @@
+version: "3.3"
+
+volumes:
+  log-data:
+
+services:
+  app:
+    build: ./app
+    volumes:
+      - log-data:/tmp
+  fluentd-send:
+    build: ./fluentd-send
+    volumes:
+      - log-data:/tmp
+  fluentd-recv:
+    image: fluent/fluentd

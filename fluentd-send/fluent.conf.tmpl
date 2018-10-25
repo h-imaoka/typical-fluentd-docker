@@ -2,7 +2,7 @@
   @type tail
   format none
   time_format %d/%b/%Y:%H:%M:%S %z
-  path /tmp/test.log
+  path /applog/test.log
   pos_file /fluentd/tmp/testlog.pos
   tag docker.testlog
   read_from_head true
@@ -13,7 +13,7 @@
   @type  forward
   <server>
   name fluentd-recv
-  host fluentd-recv
+  host {{ .Env.FLUENT_FOWARD_TO }}
   port 24224
   </server>
   buffer_type file
@@ -24,4 +24,3 @@
 <filter **>
   @type stdout
 </filter>
-

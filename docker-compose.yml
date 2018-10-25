@@ -1,4 +1,4 @@
-version: "3.3"
+version: "3"
 
 volumes:
   log-data:
@@ -7,10 +7,12 @@ services:
   app:
     build: ./app
     volumes:
-      - log-data:/tmp
+      - log-data:/applog
   fluentd-send:
     build: ./fluentd-send
+    environment:
+      - FLUENT_FOWARD_TO=fluentd-recv
     volumes:
-      - log-data:/tmp
+      - log-data:/applog
   fluentd-recv:
     image: fluent/fluentd

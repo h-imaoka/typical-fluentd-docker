@@ -9,9 +9,9 @@ Typicaly, application-server output logs by log4xxx and send any other service (
 3. fluentd tagging & transfar other servers/services
 
 1st, We build single contaner by supervisord
-supervisord
-   |- app
-   |- fluentd
+supervisord 
+   |- app  
+   |- fluentd  
 
 On the other hand, this sample
 
@@ -39,4 +39,11 @@ docker-compose up -d
 
 docker-compose exec docker-recv ls /fluentd/log
 docker-compose exec fluentd-recv cat /fluentd/log/docker.log
+```
+
+
+```
+ecs-cli compose service create \
+--deployment-max-percent 200 --deployment-min-healthy-percent 50 \
+--cluster-config tatami-gw01
 ```

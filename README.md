@@ -37,6 +37,6 @@ docker-compose up -d fluentd-recv
 docker-compose up -d
 ## wait several mins
 
-docker-compose exec docker-recv ls /fluentd/log
+docker-compose exec fluentd-recv ls /fluentd/log
 docker-compose exec fluentd-recv cat /fluentd/log/docker.log
 ```

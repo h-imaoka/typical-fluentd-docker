@@ -8,10 +8,10 @@ Typicaly, application-server output logs by log4xxx and send any other service (
 2. fluentd in_tail watch logs
 3. fluentd tagging & transfar other servers/services
 
-1st, We build single contaner by supervisord
-supervisord 
+1st, We build single contaner by supervisord  
+supervisord  
    |- app  
-   |- fluentd  
+   |- fluentd
 
 On the other hand, this sample
 
@@ -19,13 +19,13 @@ app container => docker volume  <= fluent container
 
 # This sample container's roles
 ## app
-Output /tmp/test.log each sec, and rotate by 30 secs.
+Output /applog/test.log each sec, and rotate by 30 secs.
 
 ## log-data (volume)
-Mounted by app & fluentd-send /tmp.
+Mounted by app & fluentd-send /applog .
 
 ## fluentd-send
-in_tail /tmp/test.log & tagging docker `docker.testlog` & foward to `fluentd-recv`.
+in_tail /applog/test.log & tagging docker `docker.testlog` & foward to `fluentd-recv`.
 
 ## fluentd-recv
 Vanilla `fluent/fluentd`. see original Dockerfile.

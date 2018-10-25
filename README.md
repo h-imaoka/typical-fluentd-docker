@@ -40,10 +40,3 @@ docker-compose up -d
 docker-compose exec docker-recv ls /fluentd/log
 docker-compose exec fluentd-recv cat /fluentd/log/docker.log
 ```
-
-
-```
-ecs-cli compose service create \
---deployment-max-percent 200 --deployment-min-healthy-percent 50 \
---cluster-config tatami-gw01
-```
